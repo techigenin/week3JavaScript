@@ -203,19 +203,30 @@ function saveColor() {
 function alertColor() {
     let colorButtons = document.getElementsByName('favoriteColor');
 
-    if(favColorChangedOnce)
         for (cb in colorButtons)
         {
             if (colorButtons[cb].checked)
-                {
-                    if (colorButtons[cb].value !== oldColor){
+            {
+                if (colorButtons[cb].value !== oldColor){
+                    if(favColorChangedOnce)
                         alert(`Apparently you prefer ${colorButtons[cb].value} over ${oldColor} now.`);
-                        oldColor = colorButtons[cb].value;
-                    }
+                    oldColor = colorButtons[cb].value;
                 }
+                colorRadioButtons(colorButtons);
+            }                
         }
 
+        
+
     favColorChangedOnce = true; // Skip the first time, because our alert won't make sense.
+}
+
+function colorRadioButtons(colorButtons) {
+    for (i of colorButtons) {
+        i.style.outlineStyle = 'solid';
+        i.style.outlineColor = oldColor;
+        i.style.outlineWidth = 'px';
+    }
 }
 
 // 9. Show/Hide Event
