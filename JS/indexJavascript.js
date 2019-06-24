@@ -106,10 +106,12 @@ function getCustomAttributes() {
     let retStr = "";
     
     for (let i = 0; i < allTheStuff.length; i++)
-    {
-        if (allTheStuff[i].dataset.customattr)
+    {     
+        let dataset =allTheStuff[i].dataset.customattr;
+
+        if (dataset)
         {
-             retStr += 'value: ' + allTheStuff[i].dataset.customattr.valueOf() + '\n';
+             retStr += 'value: ' + dataset.valueOf() + '\n';
              retStr += `${allTheStuff[i].tagName} tag containing ${allTheStuff[i].innerHTML}\n`;
         }
     }
@@ -205,12 +207,14 @@ function alertColor() {
 
         for (cb in colorButtons)
         {
-            if (colorButtons[cb].checked)
+            let button = colorButtons[cb];
+            
+            if (button.checked)
             {
-                if (colorButtons[cb].value !== oldColor){
+                if (button.value !== oldColor){
                     if(favColorChangedOnce)
-                        alert(`Apparently you prefer ${colorButtons[cb].value} over ${oldColor} now.`);
-                    oldColor = colorButtons[cb].value;
+                        alert(`Apparently you prefer ${button.value} over ${oldColor} now.`);
+                    oldColor = button.value;
                 }
                 colorRadioButtons(colorButtons);
             }                
